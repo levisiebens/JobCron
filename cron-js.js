@@ -2,6 +2,7 @@ var nodemailer = require("nodemailer");
 var MongoClient = require("mongodb").MongoClient;
 
 var mongodbconnection;
+var newjobcollection;
 var emailpassword;
 var emailaccount;
 var receiveremail;
@@ -10,6 +11,7 @@ var transporter;
 module.exports = function (ctx, cb) {
   //Get secrets
   mongodbconnection = ctx.secrets.mongodbconnection;
+  newjobcollection = ctx.secrets.newjobcollection;
   emailaccount = ctx.secrets.emailaccount;
   emailpassword = ctx.secrets.emailpassword;
   receiveremail = ctx.secrets.receiveremail;
@@ -48,7 +50,7 @@ function getConnection(cb) {
           return cb(err);
         }
 
-        var jobCollection = db.collection("newJobs");
+        var jobCollection = db.collection(newjobcollection);
         cb(null, jobCollection);
     });
 }
