@@ -60,7 +60,7 @@ function createMail(err, jobs) {
       return cb(err);
     }
 
-    var resultString = '<table style="width:100%"><tr><th>Job Title</th><th>Company</th><th>Location</th><th>Rating</th><th>URL</th></tr>';
+    var resultString = '<table style="width:100%"><tr><th>Job Title</th><th>Company</th><th>Location</th><th>Rating</th><th>URL</th><th>Source</th><th>ID</th></tr>';
 
     jobs.each(function(err, job) {
         if (err) {
@@ -79,7 +79,8 @@ function processJob(job, resultString) {
                         "<td>" + job.location + "</td>" +
                         "<td>" + job.rating + "</td>" +
                         '<td><a href="' + job.link + '">Link</a></td>' +
-                        "<td>" + job.source + "</td></tr>";
+                        "<td>" + job.source + "</td>" +
+                        "<td>" + job.jobid + "</td></tr>";
         return resultString;
     }
 
